@@ -17,13 +17,25 @@ export class CadastroComponent implements OnInit {
     if (form.valid) {
       this.router.navigate(["./sucesso"]);
     } else {
-      alert("Formlário inválido");
+      alert("Formulário inválido");
     }
   }
-  consultaCEP(event: any) {
+  consultaCEP(event: any, f: NgForm) {
     const cep = event.target.value;
-    this.cepService.getConsultaCep(cep).subscribe((response) => {
-      console.log(response);
+    if (cep !== "") {
+      this.cepService.getConsultaCep(cep).subscribe((response) => {
+        this.populandoEndereco(response, f);
+      });
+    }
+  }
+
+  populandoEndereco(dados: any, f: NgForm) {
+    f.form.patchValue({
+      endereco: dados.logradouro,
+      complemento: dados.complemento,
+      bairro: dados.bairro,
+      cidade: dados.localidade,
+      estado: dados.uf,
     });
   }
 }
