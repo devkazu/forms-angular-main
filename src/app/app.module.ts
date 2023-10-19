@@ -21,9 +21,8 @@ import { MaiorIdadeDirective } from "./directives/maior-idade.directive";
     SucessoCadastroComponent,
     MensagemComponent,
     MaiorIdadeDirective,
-    HttpClientModule,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
